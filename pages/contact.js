@@ -4,7 +4,7 @@ import { FaTwitter, FaDiscord } from 'react-icons/fa';
 
 export default function ContactPage() {
   return (
-    <Layout>
+    <Layout title='Contact - Datallboy'>
       <h2 className='max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2'>
         Contact
       </h2>
