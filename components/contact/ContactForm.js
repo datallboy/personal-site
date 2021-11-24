@@ -1,50 +1,75 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { RiMailSendLine } from 'react-icons/ri';
-import Joi from 'joi';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+
+import { HCAPTCHA_SITE_KEY } from '@/config/index';
 
 export default function ContactForm() {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-
   const [errors, setErrors] = useState({});
-
   const [buttonText, setButtonText] = useState('Send');
-
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const hcaptchaRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    hcaptchaRef.current.execute();
     setButtonText('Sending...');
-    const res = await fetch('/api/email', {
-      body: JSON.stringify({
-        fullname,
-        email,
-        subject,
-        message,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
-    const { error } = await res.json();
+  };
 
-    if (error) {
-      const validationErrors = {};
-      error.details.forEach((e) => {
-        validationErrors[e.context.label] = e.message;
-      });
-      console.log(validationErrors);
-      setErrors({ ...validationErrors });
-      setButtonText('Send');
+  const onHCaptchaChange = async (captchaCode) => {
+    // Code expired
+    if (!captchaCode) {
       return;
     }
+    try {
+      const res = await fetch('/api/email', {
+        body: JSON.stringify({
+          fullname,
+          email,
+          subject,
+          message,
+          captcha: captchaCode,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+      const { error } = await res.json();
 
-    setShowSuccessMessage(true);
-    setButtonText('Sent');
+      if (error) {
+        const validationErrors = {};
+        error.details
+          ? error.details.forEach((e) => {
+              validationErrors[e.context.label] = e.message;
+            })
+          : (validationErrors['requestError'] =
+              error.message || 'Email failed to send');
+        console.log(validationErrors);
+        setErrors({ ...validationErrors });
+        setButtonText('Send');
+        return;
+      }
+
+      setShowSuccessMessage(true);
+      setButtonText('Sent');
+    } catch (error) {
+      setErrors({
+        ...{ requestError: error.message || 'Email failed to send' },
+      });
+      setButtonText('Send');
+    } finally {
+      // Reset form values
+      setFullname('');
+      setEmail('');
+      setSubject('');
+      setMessage('');
+    }
   };
 
   return (
@@ -52,6 +77,13 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className='rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-gray-800'
     >
+      <HCaptcha
+        id='test'
+        size='invisible'
+        ref={hcaptchaRef}
+        sitekey={HCAPTCHA_SITE_KEY}
+        onVerify={onHCaptchaChange}
+      />
       <h1 className='text-2xl font-bold dark:text-gray-50'>Send me an email</h1>
 
       <label
@@ -126,6 +158,9 @@ export default function ContactForm() {
         >
           {buttonText} <RiMailSendLine />
         </button>
+        {errors.requestError && (
+          <span className='text-red-500'>{errors.requestError}</span>
+        )}
         {showSuccessMessage && (
           <span className='text-green-500'>
             E-mail sent! You should hear back within a few days.

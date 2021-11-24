@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^0.3.9",
     "date-fns": "^2.26.0",
     "joi": "^17.4.2",
     "next": "latest",
