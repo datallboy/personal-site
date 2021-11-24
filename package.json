@@ -6,9 +6,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "date-fns": "^2.26.0",
+    "joi": "^17.4.2",
     "next": "latest",
+    "next-themes": "^0.0.15",
+    "nodemailer": "^6.7.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-switch": "^6.0.0",
+    "swr": "^1.0.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
