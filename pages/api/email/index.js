@@ -33,7 +33,7 @@ export default async (req, res) => {
     try {
       const captchaRes = await fetch(`https://hcaptcha.com/siteverify`, {
         headers: {
-          'Content-Type': 'applicaion/x-www-form-urlencoded; charset=utf-8',
+          'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         },
         body: `response=${captcha}&secret=${HCAPTCHA_SECRET_KEY}`,
         method: 'POST',
@@ -87,8 +87,9 @@ export default async (req, res) => {
         return res.status(200).json({ success: true });
       }
 
+      console.log(captchaValidation);
       return res.status(422).json({
-        message: 'Invalid captcha code',
+        error: 'Invalid captcha code',
       });
     } catch (error) {
       console.error(error);
