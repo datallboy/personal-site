@@ -39,6 +39,11 @@ export default function Header() {
           <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
             <nav className='font-sen text-gray-800 dark:text-white uppercase text-md lg:flex items-center'>
               <li className='nav-item py-2 lg:px-6'>
+                <Link href='/blog'>
+                  <a>Blog</a>
+                </Link>
+              </li>
+              <li className='nav-item py-2 lg:px-6'>
                 <Link href='/projects'>
                   <a>Projects</a>
                 </Link>

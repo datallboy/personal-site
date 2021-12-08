@@ -8,3 +8,6 @@ exports.SMTP_HOST = 'smtp.hostinger.com';
 exports.SMTP_PORT = 465;
 exports.SMTP_USER = process.env.SMTP_USER;
 exports.SMTP_PASS = process.env.SMTP_PASS;
+
+// Configs
+exports.POSTS_PER_PAGE = 5;

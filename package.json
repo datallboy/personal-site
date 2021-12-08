@@ -7,14 +7,18 @@
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.9",
+    "@tailwindcss/typography": "^0.4.1",
     "date-fns": "^2.26.0",
+    "gray-matter": "^4.0.3",
     "joi": "^17.4.2",
     "next": "latest",
+    "next-mdx-remote": "^3.0.8",
     "next-themes": "^0.0.15",
     "nodemailer": "^6.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-markdown": "^7.1.1",
     "react-switch": "^6.0.0",
     "swr": "^1.0.1"
   },
