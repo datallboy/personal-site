@@ -6,11 +6,16 @@ import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '@/utils/getPosts';
 
 export default function PostPage({
-  frontmatter: { title, date, cover_image },
+  frontmatter: { title, date, cover_image, excerpt, tags },
   content,
 }) {
   return (
-    <Layout title={`${title} - Datallboy`}>
+    <Layout
+      title={`${title} - Datallboy`}
+      description={excerpt}
+      keywords={tags.join(', ')}
+      cover_image={cover_image}
+    >
       <Link href='/blog'>
         <a className='text-gray-800 dark:text-white'>Go Back</a>
       </Link>
