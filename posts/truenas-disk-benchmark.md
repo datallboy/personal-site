@@ -20,7 +20,15 @@ I removed the SSD log cache device, and improved my 64k and 512k block speeds si
 
 ### TLDR Just Get to The Data
 
+Hardware for the TrueNAS is as follows:
+
+- RAM: 32GB
+- vCPU: 8
+- Passthrough HBA
+
 Here are the benchmark results for different scenerios:
+
+- On RAIDZ tests, only 5 disks were used for the pool. This was to keep capacity and read speed gains the same between RAIDZ & RAIDZ2.
 
 ![4k Block Size](/images/posts/truenas_4k.png)
 
