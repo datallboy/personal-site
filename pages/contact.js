@@ -1,6 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import ContactForm from '@/components/contact/ContactForm';
-import { FaTwitter, FaDiscord } from 'react-icons/fa';
+import { FaMastodon, FaTwitter, FaDiscord } from 'react-icons/fa';
 
 export default function ContactPage() {
   return (
@@ -10,6 +10,12 @@ export default function ContactPage() {
       </h2>
       <p className='text-3xl my-6 text-center dark:text-white'>Social Media</p>
       <div className='flex justify-evenly my-6'>
+        <a
+          className='text-xl dark:text-gray-300'
+          href='hhttps://techhub.social/@datallboy'
+        >
+          <FaMastodon />
+        </a>
         <a
           className='text-xl dark:text-gray-300'
           href='https://twitter.com/datallboy'
