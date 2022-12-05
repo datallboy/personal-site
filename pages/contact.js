@@ -12,7 +12,7 @@ export default function ContactPage() {
       <div className='flex justify-evenly my-6'>
         <a
           className='text-xl dark:text-gray-300'
-          href='hhttps://techhub.social/@datallboy'
+          href='https://techhub.social/@datallboy'
         >
           <FaMastodon />
         </a>
