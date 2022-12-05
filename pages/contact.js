@@ -11,6 +11,7 @@ export default function ContactPage() {
       <p className='text-3xl my-6 text-center dark:text-white'>Social Media</p>
       <div className='flex justify-evenly my-6'>
         <a
+          rel='me'
           className='text-xl dark:text-gray-300'
           href='https://techhub.social/@datallboy'
         >
