@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout';
 export default function Home() {
   return (
     <Layout>
-      <img src='/images/pfp.png' className='rounded-full w-28 mx-auto' />
+      <img src='/images/pfp.jpg' className='rounded-full w-28 mx-auto' />
       <p className='text-3xl my-6 text-center dark:text-white'>
         Hi, I'm Datallboy
       </p>
